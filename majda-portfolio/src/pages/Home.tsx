@@ -114,94 +114,108 @@ export default function Home() {
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* 3D Profile Visualization */}
-            <div className="relative mb-12 flex justify-center perspective-container">
-              <div className="relative ai-brain">
-                <div className="w-40 h-40 md:w-48 md:h-48 rounded-full holographic animate-pulse-glow flex items-center justify-center relative overflow-hidden perspective-card">
-                  <div className="absolute inset-0 data-viz" />
-                  <Brain size={64} className="text-primary-foreground animate-float relative z-10" />
-                  
-                  {/* Floating Data Nodes */}
-                  <div className="absolute top-4 right-4 w-6 h-6 rounded-full bg-accent animate-sparkle neon-border" />
-                  <div className="absolute bottom-6 left-6 w-4 h-4 rounded-full bg-primary animate-sparkle" style={{animationDelay: '1s'}} />
-                  <div className="absolute top-1/2 left-2 w-3 h-3 rounded-full bg-secondary animate-sparkle" style={{animationDelay: '2s'}} />
-                  <div className="absolute top-1/4 right-8 w-5 h-5 rounded-full bg-chart-1 animate-sparkle" style={{animationDelay: '0.5s'}} />
-                  
-                  {/* Neural Connections */}
-                  <div className="absolute inset-0">
-                    {[...Array(6)].map((_, i) => (
-                      <div 
-                        key={`connection-${i}`}
-                        className="absolute w-px h-12 bg-gradient-to-b from-primary to-transparent"
-                        style={{
-                          left: `${20 + Math.random() * 60}%`,
-                          top: `${20 + Math.random() * 60}%`,
-                          transform: `rotate(${Math.random() * 360}deg)`,
-                          animation: `pulse-connection 2s ease-in-out infinite`,
-                          animationDelay: `${Math.random() * 2}s`
-                        }}
+          <div className="max-w-7xl mx-auto">
+            {/* Side-by-Side Layout */}
+            <div className="grid md:grid-cols-2 gap-12 items-center min-h-[80vh]">
+              {/* Left Side - Avatar */}
+              <div className="relative flex justify-center md:justify-start perspective-container animate-slide-left">
+                <div className="relative ai-brain">
+                  <div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full holographic animate-pulse-glow flex items-center justify-center relative overflow-hidden perspective-card">
+                    <div className="absolute inset-0 data-viz" />
+                    
+                    {/* Avatar Image */}
+                    <div className="relative z-20 w-full h-full rounded-full overflow-hidden">
+                      <img 
+                        src="/avatar-majda.png" 
+                        alt="Majda Ait Lamouden" 
+                        className="w-full h-full object-cover animate-float"
                       />
-                    ))}
+                    </div>
+                    
+                    {/* Floating Data Nodes */}
+                    <div className="absolute top-8 right-8 w-8 h-8 rounded-full bg-accent animate-sparkle neon-border" />
+                    <div className="absolute bottom-12 left-12 w-6 h-6 rounded-full bg-primary animate-sparkle" style={{animationDelay: '1s'}} />
+                    <div className="absolute top-1/2 left-4 w-4 h-4 rounded-full bg-secondary animate-sparkle" style={{animationDelay: '2s'}} />
+                    <div className="absolute top-1/4 right-12 w-7 h-7 rounded-full bg-chart-1 animate-sparkle" style={{animationDelay: '0.5s'}} />
+                    
+                    {/* Neural Connections */}
+                    <div className="absolute inset-0">
+                      {[...Array(8)].map((_, i) => (
+                        <div 
+                          key={`connection-${i}`}
+                          className="absolute w-px h-16 bg-gradient-to-b from-primary to-transparent"
+                          style={{
+                            left: `${15 + Math.random() * 70}%`,
+                            top: `${15 + Math.random() * 70}%`,
+                            transform: `rotate(${Math.random() * 360}deg)`,
+                            animation: `pulse-connection 2s ease-in-out infinite`,
+                            animationDelay: `${Math.random() * 2}s`
+                          }}
+                        />
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Enhanced Name and Title */}
-            <div className="space-y-6 mb-12">
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold gradient-text glow-text animate-slide-up">
-                Majda Ait Lamouden
-              </h1>
-              <div className="relative">
-                <p className="text-2xl md:text-3xl text-muted-foreground font-light animate-slide-up" style={{animationDelay: '0.2s'}}>
-                  Big Data & Cloud Computing Engineering Student
-                </p>
-                <div className="absolute -inset-2 blur-xl opacity-50" />
-              </div>
-              
-              <div className="flex flex-wrap justify-center gap-3 mt-8 animate-slide-up" style={{animationDelay: '0.4s'}}>
-                <Badge variant="secondary" className="neon-border hover-3d px-4 py-2 text-sm">
-                  <Database size={16} className="mr-2" />
-                  Data Engineering
-                </Badge>
-                <Badge variant="secondary" className="neon-border hover-3d px-4 py-2 text-sm">
-                  <Brain size={16} className="mr-2" />
-                  Artificial Intelligence
-                </Badge>
-                <Badge variant="secondary" className="neon-border hover-3d px-4 py-2 text-sm">
-                  <Cloud size={16} className="mr-2" />
-                  Cloud Computing
-                </Badge>
-              </div>
-            </div>
+              {/* Right Side - Text Content */}
+              <div className="space-y-8 text-center md:text-left animate-slide-right">
+                {/* Enhanced Name and Title */}
+                <div className="space-y-6">
+                  <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold gradient-text glow-text animate-slide-up">
+                    Majda Ait Lamouden
+                  </h1>
+                  <div className="relative">
+                    <p className="text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light animate-slide-up" style={{animationDelay: '0.2s'}}>
+                      Big Data & Cloud Computing Engineering Student
+                    </p>
+                    <div className="absolute -inset-2 blur-xl opacity-50" />
+                  </div>
+                  
+                  <div className="flex flex-wrap justify-center md:justify-start gap-3 mt-8 animate-slide-up" style={{animationDelay: '0.4s'}}>
+                    <Badge variant="secondary" className="neon-border hover-3d px-4 py-2 text-sm">
+                      <Database size={16} className="mr-2" />
+                      Data Engineering
+                    </Badge>
+                    <Badge variant="secondary" className="neon-border hover-3d px-4 py-2 text-sm">
+                      <Brain size={16} className="mr-2" />
+                      Artificial Intelligence
+                    </Badge>
+                    <Badge variant="secondary" className="neon-border hover-3d px-4 py-2 text-sm">
+                      <Cloud size={16} className="mr-2" />
+                      Cloud Computing
+                    </Badge>
+                  </div>
+                </div>
 
-            {/* Enhanced Description */}
-            <div className="max-w-4xl mx-auto mb-12 animate-fade-in" style={{animationDelay: '0.6s'}}>
-              <div className="glass p-8 rounded-2xl hover-lift relative overflow-hidden">
-                <div className="absolute inset-0" />
-                <p className="text-lg md:text-xl text-foreground leading-relaxed relative z-10">
-                  Passionate Big Data and Cloud Computing student with strong mathematical and computer science skills. 
-                  Experienced in real-time data streaming, web development, and AI/ML technologies. Quick learner with 
-                  a focus on building scalable, modern solutions that push the boundaries of technology.
-                </p>
-              </div>
-            </div>
+                {/* Enhanced Description */}
+                <div className="animate-fade-in" style={{animationDelay: '0.6s'}}>
+                  <div className="glass p-6 md:p-8 rounded-2xl hover-lift relative overflow-hidden">
+                    <div className="absolute inset-0" />
+                    <p className="text-base md:text-lg lg:text-xl text-foreground leading-relaxed relative z-10">
+                      Passionate Big Data and Cloud Computing student with strong mathematical and computer science skills. 
+                      Experienced in real-time data streaming, web development, and AI/ML technologies. Quick learner with 
+                      a focus on building scalable, modern solutions that push the boundaries of technology.
+                    </p>
+                  </div>
+                </div>
 
-            {/* Enhanced CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16 animate-scale-in" style={{animationDelay: '0.8s'}}>
-              <Link to="/projects">
-                <Button size="lg" className="holographic hover-glow px-8 py-4 text-lg group relative overflow-hidden">
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity" />
-                  <span className="relative z-10">View My Projects</span>
-                  <ArrowRight className="ml-3 transition-transform group-hover:translate-x-2 relative z-10" />
-                </Button>
-              </Link>
-              <Link to="/contact">
-                <Button variant="outline" size="lg" className="glass hover-3d px-8 py-4 text-lg border-primary/30 hover:border-primary">
-                  Get In Touch
-                </Button>
-              </Link>
+                {/* Enhanced CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-6 justify-center md:justify-start animate-scale-in" style={{animationDelay: '0.8s'}}>
+                  <Link to="/projects">
+                    <Button size="lg" className="holographic hover-glow px-8 py-4 text-lg group relative overflow-hidden">
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity" />
+                      <span className="relative z-10">View My Projects</span>
+                      <ArrowRight className="ml-3 transition-transform group-hover:translate-x-2 relative z-10" />
+                    </Button>
+                  </Link>
+                  <Link to="/contact">
+                    <Button variant="outline" size="lg" className="glass hover-3d px-8 py-4 text-lg border-primary/30 hover:border-primary">
+                      Get In Touch
+                    </Button>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
