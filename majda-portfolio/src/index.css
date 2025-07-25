@@ -526,7 +526,77 @@
   opacity: 1;
 }
 
-/* Holographic Effects */
+/* Circular Skill Elements with Traveling Beam */
+.skill-circle {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: oklch(0.12 0.08 275);
+  border: 2px solid oklch(0.2 0.1 275);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.skill-circle:hover {
+  transform: scale(1.1);
+  border-color: oklch(0.75 0.25 285);
+}
+
+.skill-circle::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 70%,
+    oklch(0.75 0.25 285) 80%,
+    oklch(0.8 0.2 300) 85%,
+    oklch(0.75 0.25 285) 90%,
+    transparent 100%
+  );
+  animation: traveling-beam 3s linear infinite;
+  z-index: -1;
+}
+
+.skill-circle::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: oklch(0.12 0.08 275);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+@keyframes traveling-beam {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Remove background color animations but keep other animations */
+.animate-gradient {
+  /* Remove gradient animation, keep static gradient */
+  background: linear-gradient(
+    135deg, 
+    oklch(0.85 0.25 285), 
+    oklch(0.8 0.2 300), 
+    oklch(0.75 0.18 270),
+    oklch(0.9 0.2 310)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 8px oklch(0.75 0.25 285 / 0.5));
+}
+
 .holographic {
   background: linear-gradient(
     135deg,
@@ -536,8 +606,7 @@
     oklch(0.7 0.18 270 / 0.6) 75%,
     oklch(0.75 0.25 285 / 0.8) 100%
   );
-  background-size: 200% 200%;
-  animation: holographic-shift 4s ease infinite;
+  /* Remove background animation */
   position: relative;
   overflow: hidden;
 }
@@ -560,22 +629,42 @@
   animation: holographic-rotate 6s linear infinite;
 }
 
-@keyframes holographic-shift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+/* Featured Project Cards */
+.featured-project {
+  perspective: 1000px;
 }
 
-@keyframes holographic-rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.featured-card {
+  transform-style: preserve-3d;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.featured-card:hover {
+  transform: rotateY(5deg) rotateX(5deg) translateZ(20px);
+}
+
+.featured-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(
+    from 0deg,
+    oklch(0.75 0.25 285),
+    oklch(0.65 0.2 295),
+    oklch(0.8 0.2 300),
+    oklch(0.75 0.25 285)
+  );
+  border-radius: inherit;
+  animation: neon-rotate 4s linear infinite;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.featured-card:hover::before {
+  opacity: 1;
 }
 
 /* Glow Text Effect */

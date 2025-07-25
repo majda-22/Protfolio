@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Brain, Database, Cloud, Code2, Sparkles, Star } from 'lucide-react';
+import { ArrowRight, Brain, Database, Cloud, Code2, Sparkles, Star, Car } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
@@ -157,7 +157,7 @@ export default function Home() {
                 <p className="text-2xl md:text-3xl text-muted-foreground font-light animate-slide-up" style={{animationDelay: '0.2s'}}>
                   Big Data & Cloud Computing Engineering Student
                 </p>
-                <div className="absolute -inset-2 bg-gradient-to-r from-primary/10 via-accent/10 to-secondary/10 blur-xl opacity-50 animate-pulse" />
+                <div className="absolute -inset-2 blur-xl opacity-50" />
               </div>
               
               <div className="flex flex-wrap justify-center gap-3 mt-8 animate-slide-up" style={{animationDelay: '0.4s'}}>
@@ -179,7 +179,7 @@ export default function Home() {
             {/* Enhanced Description */}
             <div className="max-w-4xl mx-auto mb-12 animate-fade-in" style={{animationDelay: '0.6s'}}>
               <div className="glass p-8 rounded-2xl hover-lift relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 animate-gradient" />
+                <div className="absolute inset-0" />
                 <p className="text-lg md:text-xl text-foreground leading-relaxed relative z-10">
                   Passionate Big Data and Cloud Computing student with strong mathematical and computer science skills. 
                   Experienced in real-time data streaming, web development, and AI/ML technologies. Quick learner with 
@@ -192,7 +192,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16 animate-scale-in" style={{animationDelay: '0.8s'}}>
               <Link to="/projects">
                 <Button size="lg" className="holographic hover-glow px-8 py-4 text-lg group relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-secondary opacity-0 group-hover:opacity-20 transition-opacity" />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity" />
                   <span className="relative z-10">View My Projects</span>
                   <ArrowRight className="ml-3 transition-transform group-hover:translate-x-2 relative z-10" />
                 </Button>
@@ -207,7 +207,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Enhanced Skills Section */}
+      {/* Enhanced Technical Expertise Section with Circular Skills */}
       <section className="py-24 relative overflow-hidden">
         <div className="neural-network">
           {[...Array(10)].map((_, i) => (
@@ -230,7 +230,7 @@ export default function Home() {
                 <h2 className="text-4xl md:text-6xl font-bold gradient-text glow-text">
                   Technical Expertise
                 </h2>
-                <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-accent/20 to-secondary/20 blur-2xl opacity-60 animate-pulse" />
+                <div className="absolute -inset-4 blur-2xl opacity-60" />
               </div>
               <p className="text-muted-foreground text-xl max-w-2xl mx-auto">
                 Cutting-edge technologies powering the future of AI and data science
@@ -238,55 +238,23 @@ export default function Home() {
             </div>
 
             <div className="perspective-container">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              <div className="flex flex-wrap justify-center gap-8 mb-12">
                 {skills.map((skill, index) => {
                   const delay = index * 0.1;
                   return (
                     <div 
                       key={skill.name} 
-                      className="perspective-card animate-slide-up"
+                      className="animate-slide-up"
                       style={{animationDelay: `${delay}s`}}
                     >
-                      <Card className="card-3d neon-border hover-3d group relative overflow-hidden h-full">
-                        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        
-                        {/* Skill Icon Background */}
-                        <div className="absolute top-2 right-2 w-8 h-8 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 animate-pulse" />
-                        
-                        <CardContent className="p-6 text-center relative z-10">
-                          <div className="flex items-center justify-center mb-4">
-                            <div className="relative">
-                              <Code2 size={28} className="text-primary group-hover:animate-pulse transition-colors duration-300" />
-                              <div className="absolute inset-0 bg-primary/20 rounded-full blur-lg group-hover:bg-primary/40 transition-all duration-300" />
-                            </div>
-                          </div>
-                          
-                          <h3 className="font-bold text-lg mb-2 text-foreground group-hover:text-primary transition-colors">
+                      <div className="skill-circle group">
+                        <div className="text-center">
+                          <Code2 size={20} className="text-primary mb-2 group-hover:animate-pulse transition-colors duration-300" />
+                          <h3 className="font-bold text-xs text-foreground group-hover:text-primary transition-colors">
                             {skill.name}
                           </h3>
-                          
-                          <div className="relative">
-                            <Badge variant="outline" className="text-xs px-3 py-1 glass">
-                              {skill.category}
-                            </Badge>
-                          </div>
-                          
-                          {/* Floating particles around the card */}
-                          <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                            {[...Array(3)].map((_, i) => (
-                              <div 
-                                key={`particle-${i}`}
-                                className="absolute w-1 h-1 bg-accent rounded-full animate-sparkle"
-                                style={{
-                                  left: `${20 + Math.random() * 60}%`,
-                                  top: `${20 + Math.random() * 60}%`,
-                                  animationDelay: `${Math.random() * 2}s`
-                                }}
-                              />
-                            ))}
-                          </div>
-                        </CardContent>
-                      </Card>
+                        </div>
+                      </div>
                     </div>
                   );
                 })}
@@ -308,7 +276,7 @@ export default function Home() {
                       >
                         {tech}
                       </Badge>
-                      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="absolute inset-0 blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                   ))}
                 </div>
@@ -318,7 +286,128 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Enhanced Achievements Section */}
+      {/* Featured Projects Section */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="neural-network">
+          {[...Array(8)].map((_, i) => (
+            <div 
+              key={`featured-node-${i}`}
+              className="neural-node" 
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 6}s`
+              }}
+            />
+          ))}
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <div className="relative inline-block mb-6">
+                <h2 className="text-4xl md:text-6xl font-bold gradient-text glow-text">
+                  Featured Projects
+                </h2>
+                <div className="absolute -inset-4 blur-2xl opacity-60" />
+              </div>
+              <p className="text-muted-foreground text-xl max-w-3xl mx-auto">
+                Showcasing innovative solutions in AI, Data Engineering, and Web Development
+              </p>
+            </div>
+
+            <div className="perspective-container">
+              <div className="grid md:grid-cols-2 gap-8">
+                {[
+                  {
+                    title: 'Real-Time IoT Data Streaming and Dashboard',
+                    description: 'Built a real-time IoT data pipeline with Apache Kafka using Python producer and Node.js consumer. Developed an Angular dashboard to visualize live sensor data and perform basic analytics.',
+                    technologies: ['Apache Kafka', 'Docker', 'Python', 'Node.js', 'Angular'],
+                    category: 'Data Engineering',
+                    icon: Database
+                  },
+                  {
+                    title: 'Autonomous Car Driven by Artificial Intelligence',
+                    description: 'Simulated a self-driving vehicle capable of navigating without human intervention. Integrated object detection and decision-making using YOLOv8 and deep learning.',
+                    technologies: ['Python', 'CARLA', 'YOLOv8', 'Deep Learning', 'TensorFlow'],
+                    category: 'Artificial Intelligence',
+                    icon: Car
+                  }
+                ].map((project, index) => {
+                  const delay = index * 0.3;
+                  const IconComponent = project.icon;
+                  return (
+                    <div 
+                      key={project.title} 
+                      className="featured-project animate-slide-up"
+                      style={{animationDelay: `${delay}s`}}
+                    >
+                      <Card className="featured-card neon-border hover-3d group relative overflow-hidden h-full">
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                        
+                        {/* Project Glow Effect */}
+                        <div className="absolute top-4 right-4 w-16 h-16 rounded-full blur-xl" />
+                        
+                        <CardHeader className="relative z-10">
+                          <div className="flex items-start gap-4">
+                            <div className="w-12 h-12 rounded-full holographic flex items-center justify-center perspective-card group-hover:scale-110 transition-transform duration-500">
+                              <IconComponent size={20} className="text-primary-foreground animate-float" />
+                            </div>
+                            <div className="flex-1">
+                              <Badge variant="outline" className="glass px-3 py-1 text-xs font-medium mb-2">
+                                {project.category}
+                              </Badge>
+                              <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors">
+                                {project.title}
+                              </CardTitle>
+                            </div>
+                          </div>
+                        </CardHeader>
+                        
+                        <CardContent className="relative z-10">
+                          <p className="text-muted-foreground leading-relaxed mb-6">
+                            {project.description}
+                          </p>
+                          
+                          <div className="flex flex-wrap gap-2 mb-6">
+                            {project.technologies.map((tech) => (
+                              <Badge key={tech} variant="secondary" className="text-xs px-2 py-1 glass">
+                                {tech}
+                              </Badge>
+                            ))}
+                          </div>
+                          
+                          <Button variant="outline" className="glass hover-3d w-full">
+                            View Project
+                            <ArrowRight className="ml-2" size={16} />
+                          </Button>
+                          
+                          {/* Floating Project Particles */}
+                          <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            {[...Array(4)].map((_, i) => (
+                              <div 
+                                key={`project-particle-${i}`}
+                                className="absolute w-1.5 h-1.5 bg-accent rounded-full animate-sparkle"
+                                style={{
+                                  left: `${10 + Math.random() * 80}%`,
+                                  top: `${10 + Math.random() * 80}%`,
+                                  animationDelay: `${Math.random() * 3}s`
+                                }}
+                              />
+                            ))}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Academic Journey Section */}
       <section className="py-24 relative overflow-hidden">
         <div className="energy-waves">
           <div className="energy-wave" style={{animationDuration: '12s'}} />
@@ -329,9 +418,9 @@ export default function Home() {
             <div className="text-center mb-16">
               <div className="relative inline-block mb-6">
                 <h2 className="text-4xl md:text-6xl font-bold gradient-text glow-text">
-                  Education & Achievements
+                  Academic Journey
                 </h2>
-                <div className="absolute -inset-6 bg-gradient-to-r from-primary/15 via-accent/15 to-secondary/15 blur-3xl opacity-70 animate-pulse" />
+                <div className="absolute -inset-6 blur-3xl opacity-70" />
               </div>
               <p className="text-muted-foreground text-xl max-w-3xl mx-auto">
                 Building expertise through academic excellence and professional development
@@ -339,7 +428,7 @@ export default function Home() {
             </div>
 
             <div className="perspective-container">
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-8 mb-16">
                 {achievements.map((achievement, index) => {
                   const delay = index * 0.3;
                   return (
@@ -349,10 +438,10 @@ export default function Home() {
                       style={{animationDelay: `${delay}s`}}
                     >
                       <Card className="card-3d neon-border hover-3d group relative overflow-hidden h-full">
-                        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                         
                         {/* Achievement Glow Effect */}
-                        <div className="absolute top-4 right-4 w-16 h-16 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 blur-xl animate-pulse" />
+                        <div className="absolute top-4 right-4 w-16 h-16 rounded-full blur-xl" />
                         
                         <CardContent className="p-8 relative z-10">
                           <div className="flex items-start gap-6">
@@ -396,10 +485,11 @@ export default function Home() {
                               <div className="relative">
                                 <div className="h-1 bg-muted rounded-full overflow-hidden">
                                   <div 
-                                    className="h-full bg-gradient-to-r from-primary via-accent to-secondary animate-gradient rounded-full"
+                                    className="h-full rounded-full"
                                     style={{
                                       width: achievement.year === 'Current' ? '100%' : 
                                             achievement.year === '2027' ? '60%' : '100%',
+                                      background: 'linear-gradient(to right, oklch(75% .25 285), oklch(65% .2 295), oklch(18% .12 275))',
                                       animation: 'progress-fill 2s ease-out forwards'
                                     }}
                                   />
@@ -435,11 +525,11 @@ export default function Home() {
               <div className="glass p-8 rounded-3xl hover-lift relative overflow-hidden">
                 <div className="absolute inset-0 neural-bg opacity-20" />
                 <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold gradient-text">Academic Journey</h3>
+                  <h3 className="text-2xl font-bold gradient-text">Educational Timeline</h3>
                 </div>
                 
                 <div className="relative">
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-px h-full bg-gradient-to-b from-primary via-accent to-secondary" />
+                  <div className="absolute left-1/2 transform -translate-x-1/2 w-px h-full" style={{background: 'linear-gradient(to bottom, oklch(75% .25 285), oklch(65% .2 295), oklch(18% .12 275))'}} />
                   
                   <div className="space-y-8">
                     {[
