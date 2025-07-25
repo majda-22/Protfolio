@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Github, ExternalLink, Brain, Car, Home, TrendingUp, Database, Monitor } from 'lucide-react';
+import { Github, ExternalLink, Brain, Car, Home, TrendingUp, Database, Monitor, MessageCircle } from 'lucide-react';
 
 export default function Projects() {
   const projects = [
@@ -68,119 +68,240 @@ export default function Projects() {
   ];
 
   const categoryColors = {
-    'Data Engineering': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
-    'Artificial Intelligence': 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300',
-    'Web Development': 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
-    'Machine Learning': 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300'
+    'Data Engineering': 'neon-border bg-blue-500/10 text-blue-300 hover:bg-blue-500/20',
+    'Artificial Intelligence': 'neon-border bg-purple-500/10 text-purple-300 hover:bg-purple-500/20',
+    'Web Development': 'neon-border bg-green-500/10 text-green-300 hover:bg-green-500/20',
+    'Machine Learning': 'neon-border bg-orange-500/10 text-orange-300 hover:bg-orange-500/20'
   };
 
   return (
-    <div className="pt-16 min-h-screen">
-      {/* Header Section */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 neural-bg opacity-50"></div>
+    <div className="pt-16 min-h-screen relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="neural-network">
+        {[...Array(20)].map((_, i) => (
+          <div 
+            key={`node-${i}`}
+            className="neural-node" 
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 6}s`
+            }}
+          />
+        ))}
+      </div>
+      
+      <div className="data-particles">
+        {[...Array(25)].map((_, i) => (
+          <div 
+            key={`particle-${i}`}
+            className="particle" 
+            style={{
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 8}s`
+            }}
+          />
+        ))}
+      </div>
+      
+      <div className="quantum-field" />
+      <div className="cyber-grid" />
+      {/* Enhanced Header Section */}
+      <section className="relative py-24 overflow-hidden perspective-container">
+        <div className="energy-waves">
+          <div className="energy-wave" />
+        </div>
+        <div className="matrix-rain">
+          {[...Array(12)].map((_, i) => {
+            const chars = ['<', '>', '{', '}', '(', ')', '[', ']', '=', '+', '-', '*'];
+            return (
+              <div 
+                key={`code-${i}`}
+                className="matrix-char" 
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 8}s`,
+                  animationDuration: `${4 + Math.random() * 4}s`
+                }}
+              >
+                {chars[Math.floor(Math.random() * chars.length)]}
+              </div>
+            );
+          })}
+        </div>
+        
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center mb-6">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-accent animate-pulse-glow flex items-center justify-center">
-                <Brain size={32} className="text-primary-foreground animate-float" />
+            <div className="flex justify-center mb-8">
+              <div className="relative ai-brain">
+                <div className="w-20 h-20 rounded-full holographic animate-pulse-glow flex items-center justify-center perspective-card">
+                  <Brain size={40} className="text-primary-foreground animate-float" />
+                </div>
               </div>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold gradient-text animate-gradient mb-6">
-              My Projects
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              A showcase of my work in AI, data engineering, and web development. 
-              Each project represents a unique challenge and innovative solution.
-            </p>
+            
+            <div className="relative mb-8">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold gradient-text glow-text animate-slide-up">
+                My Projects
+              </h1>
+              <div className="absolute -inset-6 bg-gradient-to-r from-primary/20 via-accent/20 to-secondary/20 blur-3xl opacity-70 animate-pulse" />
+            </div>
+            
+            <div className="glass p-8 rounded-2xl hover-lift animate-fade-in" style={{animationDelay: '0.4s'}}>
+              <p className="text-xl md:text-2xl text-foreground max-w-3xl mx-auto leading-relaxed">
+                Innovative solutions in AI, data engineering, and web development. 
+                Each project represents a journey through cutting-edge technology and creative problem-solving.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Projects Grid */}
-      <section className="py-20 relative">
-        <div className="container mx-auto px-4">
+      {/* Enhanced Projects Grid */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-7xl mx-auto">
-            <div className="grid gap-8 md:gap-12">
+            <div className="space-y-16">
               {projects.map((project, index) => {
                 const IconComponent = project.icon;
+                const isReverse = index % 2 === 1;
                 return (
-                  <Card 
+                  <div 
                     key={project.id} 
-                    className={`glass hover-lift group overflow-hidden ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
+                    className={`perspective-container animate-slide-up`}
                     style={{animationDelay: `${index * 0.2}s`}}
                   >
-                    <div className="md:flex">
-                      {/* Project Image Placeholder */}
-                      <div className="md:w-1/2 relative overflow-hidden bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10">
-                        <div className="aspect-video md:aspect-square flex items-center justify-center relative">
-                          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20 animate-gradient"></div>
-                          <div className="relative z-10 flex items-center justify-center">
-                            <IconComponent size={80} className="text-primary/60 animate-float" />
-                            <Monitor size={120} className="text-primary/20 absolute animate-pulse" />
-                          </div>
-                          <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
-                          <div className="absolute bottom-4 left-4 right-4">
-                            <Badge className={categoryColors[project.category as keyof typeof categoryColors]}>
-                              {project.category}
-                            </Badge>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Project Content */}
-                      <div className="md:w-1/2 p-6 md:p-8">
-                        <CardHeader className="p-0 mb-4">
-                          <CardTitle className="text-2xl md:text-3xl font-bold gradient-text mb-3">
-                            {project.title}
-                          </CardTitle>
-                        </CardHeader>
-                        
-                        <CardContent className="p-0">
-                          <p className="text-muted-foreground mb-6 leading-relaxed">
-                            {project.description}
-                          </p>
-
-                          {/* Key Highlights */}
-                          <div className="mb-6">
-                            <h4 className="font-semibold mb-3 text-foreground">Key Highlights:</h4>
-                            <ul className="space-y-2">
-                              {project.highlights.map((highlight, idx) => (
-                                <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                                  <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                                  {highlight}
-                                </li>
+                    <Card className="card-3d neon-border hover-3d group overflow-hidden">
+                      <div className={`md:flex ${isReverse ? 'md:flex-row-reverse' : ''}`}>
+                        {/* Enhanced Project Visualization */}
+                        <div className="md:w-1/2 relative overflow-hidden">
+                          <div className="aspect-video md:aspect-[4/3] flex items-center justify-center relative holographic">
+                            {/* Animated Background */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10">
+                              <div className="cyber-grid opacity-30" />
+                              <div className="data-viz" />
+                            </div>
+                            
+                            {/* 3D Project Icon */}
+                            <div className="relative z-10 perspective-card group-hover:scale-110 transition-transform duration-500">
+                              <div className="relative ai-brain">
+                                <IconComponent size={100} className="text-primary/80 animate-float" />
+                                <Monitor size={140} className="text-primary/20 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse" />
+                              </div>
+                            </div>
+                            
+                            {/* Floating Tech Icons */}
+                            <div className="absolute inset-0">
+                              {project.technologies.slice(0, 3).map((tech, i) => (
+                                <div 
+                                  key={tech}
+                                  className="absolute w-8 h-8 rounded-full glass flex items-center justify-center text-xs font-bold text-primary animate-float"
+                                  style={{
+                                    left: `${20 + Math.random() * 60}%`,
+                                    top: `${20 + Math.random() * 60}%`,
+                                    animationDelay: `${i * 1.5}s`,
+                                    animationDuration: `${3 + Math.random() * 2}s`
+                                  }}
+                                >
+                                  {tech.slice(0, 2)}
+                                </div>
                               ))}
-                            </ul>
-                          </div>
-
-                          {/* Technologies */}
-                          <div className="mb-6">
-                            <h4 className="font-semibold mb-3 text-foreground">Technologies Used:</h4>
-                            <div className="flex flex-wrap gap-2">
-                              {project.technologies.map((tech) => (
-                                <Badge key={tech} variant="outline" className="hover-lift">
-                                  {tech}
-                                </Badge>
+                            </div>
+                            
+                            {/* Category Badge */}
+                            <div className="absolute bottom-4 left-4 right-4">
+                              <Badge className={`${categoryColors[project.category as keyof typeof categoryColors]} transition-all duration-300`}>
+                                {project.category}
+                              </Badge>
+                            </div>
+                            
+                            {/* Data Streams */}
+                            <div className="absolute inset-0 pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity">
+                              {[...Array(4)].map((_, i) => (
+                                <div 
+                                  key={`stream-${i}`}
+                                  className="absolute h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"
+                                  style={{
+                                    left: `${10 + Math.random() * 80}%`,
+                                    top: `${20 + Math.random() * 60}%`,
+                                    width: `${30 + Math.random() * 40}%`,
+                                    transform: `rotate(${Math.random() * 360}deg)`,
+                                    animation: `data-stream 3s ease-in-out infinite`,
+                                    animationDelay: `${Math.random() * 3}s`
+                                  }}
+                                />
                               ))}
                             </div>
                           </div>
+                        </div>
 
-                          {/* Action Buttons */}
-                          <div className="flex gap-3">
-                            <Button variant="outline" size="sm" className="glass hover-glow">
-                              <Github size={16} className="mr-2" />
-                              View Code
-                            </Button>
-                            <Button size="sm" className="hover-glow">
-                              <ExternalLink size={16} className="mr-2" />
-                              Live Demo
-                            </Button>
-                          </div>
-                        </CardContent>
+                        {/* Enhanced Project Content */}
+                        <div className="md:w-1/2 p-8 md:p-12 relative">
+                          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                          
+                          <CardHeader className="p-0 mb-6 relative z-10">
+                            <CardTitle className="text-3xl md:text-4xl font-bold gradient-text glow-text mb-4 leading-tight">
+                              {project.title}
+                            </CardTitle>
+                          </CardHeader>
+                          
+                          <CardContent className="p-0 relative z-10">
+                            <p className="text-muted-foreground mb-8 leading-relaxed text-lg">
+                              {project.description}
+                            </p>
+
+                            {/* Enhanced Key Highlights */}
+                            <div className="mb-8">
+                              <h4 className="font-bold mb-4 text-foreground text-lg flex items-center gap-2">
+                                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                                Key Highlights
+                              </h4>
+                              <ul className="space-y-3">
+                                {project.highlights.map((highlight, idx) => (
+                                  <li key={idx} className="flex items-start gap-3 text-muted-foreground group-hover:text-foreground transition-colors">
+                                    <div className="w-2 h-2 rounded-full bg-accent mt-2 flex-shrink-0 animate-sparkle" style={{animationDelay: `${idx * 0.5}s`}} />
+                                    {highlight}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            {/* Enhanced Technologies */}
+                            <div className="mb-8">
+                              <h4 className="font-bold mb-4 text-foreground text-lg flex items-center gap-2">
+                                <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                                Tech Stack
+                              </h4>
+                              <div className="flex flex-wrap gap-3">
+                                {project.technologies.map((tech, i) => (
+                                  <Badge 
+                                    key={tech} 
+                                    variant="outline" 
+                                    className="neon-border hover-glow px-3 py-1 transition-all duration-300"
+                                    style={{animationDelay: `${i * 0.1}s`}}
+                                  >
+                                    {tech}
+                                  </Badge>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Enhanced Action Buttons */}
+                            <div className="flex gap-4">
+                              <Button variant="outline" size="lg" className="glass hover-3d group/btn px-6">
+                                <Github size={20} className="mr-2 group-hover/btn:animate-pulse" />
+                                View Code
+                              </Button>
+                              <Button size="lg" className="holographic hover-glow group/btn px-6">
+                                <ExternalLink size={20} className="mr-2 group-hover/btn:animate-pulse" />
+                                Live Demo
+                              </Button>
+                            </div>
+                          </CardContent>
+                        </div>
                       </div>
-                    </div>
-                  </Card>
+                    </Card>
+                  </div>
                 );
               })}
             </div>
@@ -188,20 +309,71 @@ export default function Projects() {
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-20 bg-muted/50 relative">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-6">
-              Interested in Collaborating?
-            </h2>
-            <p className="text-muted-foreground text-lg mb-8">
-              I'm always excited to work on new challenges and innovative projects. 
-              Let's build something amazing together!
-            </p>
-            <Button size="lg" className="hover-glow">
-              Get In Touch
-            </Button>
+      {/* Enhanced Call to Action */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="energy-waves">
+          <div className="energy-wave" style={{animationDuration: '10s'}} />
+        </div>
+        <div className="quantum-field" style={{opacity: 0.4}} />
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="glass p-12 rounded-3xl hover-lift relative overflow-hidden">
+              <div className="absolute inset-0 neural-bg opacity-30" />
+              
+              <div className="relative z-10">
+                <div className="flex justify-center mb-8">
+                  <div className="relative ai-brain">
+                    <div className="w-16 h-16 rounded-full holographic animate-pulse-glow flex items-center justify-center">
+                      <MessageCircle size={32} className="text-primary-foreground animate-float" />
+                    </div>
+                  </div>
+                </div>
+                
+                <h2 className="text-4xl md:text-5xl font-bold gradient-text glow-text mb-6">
+                  Ready to Collaborate?
+                </h2>
+                
+                <p className="text-muted-foreground text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
+                  I'm always excited to work on innovative projects and explore new technologies. 
+                  Let's create something extraordinary together!
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                  <Button size="lg" className="holographic hover-glow px-8 py-4 text-lg group relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-secondary opacity-0 group-hover:opacity-20 transition-opacity" />
+                    <MessageCircle size={20} className="mr-3 relative z-10" />
+                    <span className="relative z-10">Get In Touch</span>
+                  </Button>
+                  
+                  <Button variant="outline" size="lg" className="glass hover-3d px-8 py-4 text-lg border-primary/30 hover:border-primary">
+                    <Github size={20} className="mr-3" />
+                    View All Projects
+                  </Button>
+                </div>
+              </div>
+              
+              {/* Floating collaboration icons */}
+              <div className="absolute inset-0 pointer-events-none">
+                {[...Array(6)].map((_, i) => {
+                  const icons = ['💡', '🚀', '⚡', '🔬', '🧠', '💻'];
+                  return (
+                    <div 
+                      key={`collab-${i}`}
+                      className="absolute text-2xl opacity-20 animate-float"
+                      style={{
+                        left: `${10 + Math.random() * 80}%`,
+                        top: `${10 + Math.random() * 80}%`,
+                        animationDelay: `${Math.random() * 4}s`,
+                        animationDuration: `${3 + Math.random() * 2}s`
+                      }}
+                    >
+                      {icons[i]}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </section>

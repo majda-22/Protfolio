@@ -19,13 +19,14 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 glass">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
+          {/* Enhanced Logo */}
+          <Link to="/" className="flex items-center gap-3 group">
             <div className="relative">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent animate-pulse-glow"></div>
-              <div className="absolute inset-0 w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent opacity-60 animate-float"></div>
+              <div className="w-10 h-10 rounded-lg holographic animate-pulse-glow flex items-center justify-center">
+                <div className="text-primary-foreground font-bold text-lg">M</div>
+              </div>
             </div>
-            <span className="text-xl font-bold gradient-text">Majda</span>
+            <span className="text-xl font-bold gradient-text glow-text">Majda</span>
           </Link>
 
           {/* Desktop Navigation */}
