@@ -3,11 +3,23 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Github, ExternalLink, Brain, Car, Home, TrendingUp, Database, Monitor, MessageCircle, Filter } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
+import { LucideIcon } from 'lucide-react';
+
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  technologies: string[];
+  category: string;
+  icon: LucideIcon;
+  highlights: string[];
+}
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');
-  const [filteredProjects, setFilteredProjects] = useState([]);
-  const cardRefs = useRef([]);
+  const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const filterCategories = [
     'All',
@@ -16,7 +28,7 @@ export default function Projects() {
     'Data Pipelines'
   ];
 
-  const projects = [
+  const projects: Project[] = [
     {
       id: 1,
       title: 'Real-Time IoT Data Streaming and Dashboard',
@@ -129,7 +141,7 @@ export default function Projects() {
     };
   }, [filteredProjects]);
 
-  const setCardRef = (el, index) => {
+  const setCardRef = (el: HTMLDivElement | null, index: number) => {
     cardRefs.current[index] = el;
   };
 
